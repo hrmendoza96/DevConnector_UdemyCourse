@@ -1,9 +1,18 @@
 const express = require("express");
+const connectDB = require("./config/db");
 const app = express();
-/**
- * Test endpoint
- */
+//Connect Databse
+connectDB();
+//Init Middleware
+app.use(express.json({ extended: false })); // Allow to get data in req.body
+// Test endpoint
 app.get("/", (req, res) => res.send("API Running"));
+
+//Define Routes
+app.use("/api/users", require("./routes/api/users"));
+app.use("/api/auth", require("./routes/api/auth"));
+app.use("/api/profile", require("./routes/api/profile"));
+app.use("/api/posts", require("./routes/api/posts"));
 /**
  * Looks for environment variable called
  * PORT to use when deployed. Locally it
