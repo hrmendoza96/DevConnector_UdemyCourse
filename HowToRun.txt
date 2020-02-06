@@ -1,0 +1,9 @@
+Express: npm run server
+React: ./client ... npm start
+
+Run Express & React concurrently:
+Add this 2 scripts to the package.json:
+"client": "npm start --prefix client",
+"dev": "concurrently \"npm run server\" \"npm run client\""
+
+run command: npm run dev
